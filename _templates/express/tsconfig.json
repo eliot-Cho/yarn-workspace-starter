@@ -6,6 +6,7 @@
     "paths": {
       "@prisma": ["./prisma/index.ts"],
       "@/*": ["./src/*"]
-    }
+    },
+    "outDir": "./dist"
   }
 }

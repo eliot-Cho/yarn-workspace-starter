@@ -1,0 +1,57 @@
+name: templates-ci
+
+on:
+    push:
+        branches: [main]
+        paths:
+            - '_templates/**'
+            - 'packages/**'
+            - 'package.json'
+            - '*.lock'
+            - '.yarnrc.yml'
+            - 'tsconfig.base.json'
+            - '.prettier*'
+            - '.github/**'
+
+    pull_request:
+        types: [opened, synchronize, reopened]
+        paths:
+            - '_templates/**'
+            - 'packages/**'
+            - 'package.json'
+            - '*.lock'
+            - '.yarnrc.yml'
+            - 'tsconfig.base.json'
+            - '.prettier*'
+            - '.github/**'
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: services/user
+        strategy:
+            matrix:
+                node-version: [18.x]
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  fetch-depth: '2'
+
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ matrix.node-version }}
+
+            - name: Install Dependencies
+              run: yarn install --immutable --immutable-cache
+
+            - name: Build Next Template
+              run: yarn workspace @template/next build
+
+            - name: Build Express Template
+              run: yarn workspace @template/express build
+
+            - name: Build StoryBook Template
+              run: yarn workspace @template/react-sb build-storybook

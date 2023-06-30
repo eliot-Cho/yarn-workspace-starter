@@ -1,7 +1,7 @@
 {
   "name": "@cli/template",
   "version": "1.0.0",
-  "packageManager": "yarn@3.5.1",
+  "packageManager": "yarn@3.6.0",
   "devDependencies": {
     "@types/cross-spawn": "^6.0.2",
     "@types/node": "^20.3.1",
