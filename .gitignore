@@ -1,0 +1,15 @@
+/node_modules
+node_modules/
+node_modules
+
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+.env
+
+.DS_Store
