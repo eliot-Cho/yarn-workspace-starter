@@ -1,4 +1,13 @@
 {
-  "extends": "../../tsconfig.base.json",
-  "include": ["./src/**/*"]
+  "compilerOptions": {
+    "strict": true,
+    "target": "ESNext",
+    "module": "CommonJS",
+    "noImplicitAny": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx"
+  },
+  "include": ["./src/**/*", "./.storybook/**/*"]
 }

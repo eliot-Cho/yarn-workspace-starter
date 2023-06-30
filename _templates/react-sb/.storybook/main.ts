@@ -15,6 +15,16 @@ const config: StorybookConfig = {
         path.join("@storybook/addon-interactions", "package.json")
       )
     ),
+    {
+      name: path.dirname(
+        require.resolve(path.join("@storybook/addon-styling", "package.json"))
+      ),
+      options: {
+        postCss: {
+          implementation: require.resolve(path.join("postcss", "package.json")),
+        },
+      },
+    },
   ],
   framework: {
     name: path.dirname(
