@@ -24,12 +24,15 @@ on:
             - 'tsconfig.base.json'
             - '.prettier*'
             - '.github/**'
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
 jobs:
-    build:
+    template-ci:
+        name: template-ci
         runs-on: ubuntu-latest
-        defaults:
-            run:
-                working-directory: _templates/**
         strategy:
             matrix:
                 node-version: [18]
