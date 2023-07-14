@@ -7,7 +7,7 @@
             "./services/*",
             "./packages/*",
             "./clis/*",
-            "./_templates/*"
+            "./templates/*"
         ]
     },
     "devDependencies": {

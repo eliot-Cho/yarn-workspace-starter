@@ -20,9 +20,7 @@ const config: StorybookConfig = {
         require.resolve(path.join("@storybook/addon-styling", "package.json"))
       ),
       options: {
-        postCss: {
-          implementation: require.resolve(path.join("postcss", "package.json")),
-        },
+        postCss: true,
       },
     },
   ],

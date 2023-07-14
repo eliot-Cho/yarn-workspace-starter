@@ -11,7 +11,7 @@ const command = async () => {
   const { dir } = await prompts.dir();
   const { packageName } = await prompts.packageName();
 
-  const source = path.resolve(`../../_templates/${template}`);
+  const source = path.resolve(`../../templates/${template}`);
   const target = path.resolve(`../../${dir}/${packageName}`);
 
   if (!fs.existsSync(`../../${dir}`)) {
