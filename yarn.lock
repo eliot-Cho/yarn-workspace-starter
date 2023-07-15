@@ -9323,24 +9323,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mentos@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "mentos@workspace:."
-  dependencies:
-    husky: ">=6"
-    lint-staged: ">=10"
-    pinst: ">=2"
-    prettier: ^2.8.8
-    prettier-plugin-tailwindcss: ^0.3.0
-    typescript: ^5.1.6
-  dependenciesMeta:
-    "@prisma/client@4.15.0":
-      unplugged: true
-    prisma@4.15.0:
-      unplugged: true
-  languageName: unknown
-  linkType: soft
-
 "merge-descriptors@npm:1.0.1":
   version: 1.0.1
   resolution: "merge-descriptors@npm:1.0.1"
@@ -11610,6 +11592,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"shell-quote@npm:^1.8.1":
+  version: 1.8.1
+  resolution: "shell-quote@npm:1.8.1"
+  checksum: 5f01201f4ef504d4c6a9d0d283fa17075f6770bfbe4c5850b074974c68062f37929ca61700d95ad2ac8822e14e8c4b990ca0e6e9272e64befd74ce5e19f0736b
+  languageName: node
+  linkType: hard
+
 "shelljs@npm:^0.8.5":
   version: 0.8.5
   resolution: "shelljs@npm:0.8.5"
@@ -13079,6 +13068,25 @@ __metadata:
   checksum: b14afbb51e3251a204d81937c86a7e9d4bdbf9a2bcee38226c900d00f522969ab675703bee2a6f99f8e20103f608382936034e64d921b74df82b63c07c5e8f59
   languageName: node
   linkType: hard
+
+"yarn-workspace-starter@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "yarn-workspace-starter@workspace:."
+  dependencies:
+    husky: ">=6"
+    lint-staged: ">=10"
+    pinst: ">=2"
+    prettier: ^2.8.8
+    prettier-plugin-tailwindcss: ^0.3.0
+    shell-quote: ^1.8.1
+    typescript: ^5.1.6
+  dependenciesMeta:
+    "@prisma/client@4.15.0":
+      unplugged: true
+    prisma@4.15.0:
+      unplugged: true
+  languageName: unknown
+  linkType: soft
 
 "yauzl@npm:^2.10.0":
   version: 2.10.0

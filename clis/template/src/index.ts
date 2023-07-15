@@ -1,37 +1,43 @@
-import path from "path";
-import fs from "fs";
+import fs from 'fs';
+import path from 'path';
 
-import { cli } from "./helpers/spawn";
-import { prompts } from "./helpers/prompts";
-import { mkPkgJson } from "./helpers/mk-pkg-json";
-import { copyFolderSync } from "./helpers/copy-folder";
+import { cli } from './helpers/spawn';
+import { prompts } from './helpers/prompts';
+import { mkPkgJson } from './helpers/mk-pkg-json';
+import { copyFolderSync } from './helpers/copy-folder';
+import { MSG } from './helpers/msg';
 
-const command = async () => {
-  const { template } = await prompts.kind();
-  const { dir } = await prompts.dir();
-  const { packageName } = await prompts.packageName();
-
-  const source = path.resolve(`../../templates/${template}`);
-  const target = path.resolve(`../../${dir}/${packageName}`);
-
-  if (!fs.existsSync(`../../${dir}`)) {
-    fs.mkdirSync(`../../${dir}`);
-  }
-
-  copyFolderSync(source, target);
-
-  mkPkgJson({ source, packageName, target, dir });
-
-  await cli("yarn");
-
-  console.log(`\n✅ is Success copied ${template} to ${target}\n`);
-};
-
-const start = () => {
+const start = async () => {
   try {
-    command();
+    const { template } = await prompts.kind();
+    const { dir } = await prompts.dir();
+    const { packageName } = await prompts.packageName();
+
+    const source = path.resolve(`../../templates/${template}`);
+    const target = path.resolve(`../../${dir}/${packageName}`);
+
+    if (!fs.existsSync(`../../${dir}`)) {
+      fs.mkdirSync(`../../${dir}`);
+    }
+
+    if (fs.existsSync(target)) {
+      throw new Error('같은 이름의 폴더가 존재합니다.');
+    }
+
+    fs.mkdirSync(target);
+
+    copyFolderSync(source, target);
+    copyFolderSync(path.resolve('./common'), target);
+
+    mkPkgJson({ source, packageName, target, dir });
+
+    await cli(
+      `yarn workspace ${`@${dir.slice(0, -1)}/${packageName}`} add prettier -D`,
+    );
+
+    MSG.CPY_SUCCESS({ template, target });
   } catch (e) {
-    console.log(`\n❌ is Failed ==> ${e}\n`);
+    MSG.CPY_FAIL(e);
   }
 };
 
